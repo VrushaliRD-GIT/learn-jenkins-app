@@ -19,6 +19,7 @@ pipeline {
                         npm ci
                         npm run build
                         npm install
+                        npm test
                         ls -la
                     '''
                 }
@@ -26,8 +27,11 @@ pipeline {
             stage('Test') {
                     steps {
                         echo 'Test Stage'
-                        sh 'test -f build/robots.txt'
-                        sh 'npm test -- --grep="Disallow"'
+                        sh '''
+                            test -f build/robots.txt
+                            cat build/robots.txt
+                            npm test -- --grep="Disallow"
+                        '''
                     }
             }
                     
