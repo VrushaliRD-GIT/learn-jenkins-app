@@ -23,6 +23,16 @@ pipeline {
                     '''
                 }
             }
+            stage('Install Dependencies') {
+                steps {
+                    sh 'apt-get update && apt-get install -y libatomic1' // Use the correct command for your distro
+                }
+            }
+            stage('Run Node Application') {
+                steps {
+                    sh 'node your_app.js'
+                }
+            }
             stage('Test') {
                     steps {
                         echo 'Test Stage'
