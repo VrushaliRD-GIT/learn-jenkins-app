@@ -1,5 +1,8 @@
 pipeline {
         agent any
+         tools {
+            nodejs "NodeJS 14"
+        }
         stages {
             stage('Build') {
                 agent {
@@ -15,16 +18,12 @@ pipeline {
                         npm --version
                         npm ci
                         npm run build
+                        npm install
                         ls -la
                     '''
                 }
             }
             stage('Test') {
-                    agent any 
-                        tools {
-                             nodejs "NodeJS 14"
-                        }
-                    
                     steps {
                         echo 'Test Stage'
                         sh 'test -f build/robots.txt'
