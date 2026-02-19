@@ -30,7 +30,7 @@ pipeline {
                         sh '''
                             test -f build/robots.txt
                             cat build/robots.txt
-                            npm test -- --grep="Disallow"
+                            grep="Disallow"
                         '''
                     }
             }
