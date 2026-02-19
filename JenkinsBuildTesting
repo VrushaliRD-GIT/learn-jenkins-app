@@ -4,6 +4,7 @@ pipeline {
         //    nodejs "NodeJS 14"
         //}
         stages {
+            /*
             stage('Build') {
                 agent {
                     docker {
@@ -22,6 +23,7 @@ pipeline {
                     '''
                 }
             }
+            */
             stage('Test') {
                 agent {
                     docker {
