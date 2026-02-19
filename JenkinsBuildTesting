@@ -18,29 +18,22 @@ pipeline {
                         npm --version
                         npm ci
                         npm run build
-                        npm install
                         ls -la
                     '''
                 }
             }
-            stage('Install Dependencies') {
-                steps {
-                    sh 'sudo apt-get update && sudo apt-get install mypackage' // Use the correct command for your distro
-                }
-            }
-            stage('Run Node Application') {
-                steps {
-                    sh 'node your_app.js'
-                }
-            }
             stage('Test') {
+                agent {
+                    docker {
+                        image 'node:18-alpine'
+                        reuseNode true
+                    }
+                }
                     steps {
                         echo 'Test Stage'
                         sh '''
+                            test -f build/index.html
                             npm test
-                            test -f build/robots.txt
-                            cat build/robots.txt
-                            grep="Disallow"
                         '''
                     }
             }
