@@ -31,25 +31,12 @@ pipeline {
                         sh 'test -f build/robots.txt'
                         sh 'npm test -- --grep="Disallow"'
                     }
-                }
+            }
                     
                 
-            }
         }
+}
             
-}
 
-pipeline {
-    agent any
-    tools {
-        nodejs "NodeJS 14" // Use the name you configured in Global Tool Configuration
-    }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-    }
-}
+
 
