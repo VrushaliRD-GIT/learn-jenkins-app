@@ -18,6 +18,7 @@ pipeline {
                         npm --version
                         npm ci
                         npm run build
+                        npm install
                         ls -la
                     '''
                 }
@@ -26,7 +27,6 @@ pipeline {
                     steps {
                         echo 'Test Stage'
                         sh '''
-                            npm install
                             npm test
                             test -f build/robots.txt
                             cat build/robots.txt
