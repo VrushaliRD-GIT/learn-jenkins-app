@@ -20,11 +20,11 @@ pipeline {
                 }
             }
             stage('Test') {
-                    agent {
+                    agent any 
                         tools {
-                            nodejs "NodeJS 14"
+                             nodejs "NodeJS 14"
                         }
-                    }
+                    
                     steps {
                         echo 'Test Stage'
                         sh 'npm install'
